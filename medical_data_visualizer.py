@@ -4,13 +4,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # 1
-df = None
-
+df = pd.read_csv('medical_examination.csv')
+# print(df.head())
 # 2
-df['overweight'] = None
+#print(((df['height'] * 0.01) ** 2))
+df_bmi = (df['weight'] // ((df['height'] * 0.01) ** 2))
+# print(df_bmi)
+
+df['overweight'] = ((df['weight'] // ((df['height'] * 0.01) ** 2)) > 25).astype(int)
 
 # 3
-
+df['cholesterol'] = (df['cholesterol'] > 1).astype(int)
+df['gluc'] = (df['gluc'] > 1).astype(int)
+print(df.head())
 
 # 4
 def draw_cat_plot():
